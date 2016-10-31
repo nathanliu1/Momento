@@ -48,12 +48,12 @@
         "source": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_part_time.xml"
     },
     {
-        "merged": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
-        "source": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
-    },
-    {
         "merged": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,21 +116,23 @@ public class DisplayFragment extends Fragment implements View.OnClickListener {
         extractView.setText(extract);
         ImageView backdropImg = (ImageView) view.findViewById(R.id.backdrop);
         Glide.with(this).load(pathUrl).centerCrop().into(backdropImg);
-        view.findViewById(R.id.appbar).setOnClickListener(this);
+        view.findViewById(R.id.appbarbutton).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.appbar: {
-                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+            case R.id.appbarbutton: {
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 savedFavorite = title+"||"+extract+"||"+pathUrl+"||"+lat+"||"+longitude;
                 int savedCount = sharedPref.getInt("countSaved", 0);
+                Log.i("saved value", savedCount+"");
                 savedCount++;
-                editor.putString(""+savedCount, savedFavorite);
+                editor.putString(""+(savedCount-1), savedFavorite);
                 editor.putInt("countSaved", savedCount);
                 editor.commit();
+                Log.i("saved value", savedFavorite);
                 break;
             }
 
