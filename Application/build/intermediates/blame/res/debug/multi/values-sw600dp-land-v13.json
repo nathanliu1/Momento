@@ -1,0 +1,28 @@
+[
+    {
+        "outputFile": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-land-v13\\values-sw600dp-land-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 5,
+                    "endColumn": 12,
+                    "endOffset": 219
+                },
+                "from": {
+                    "file": "C:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\src\\main\\res\\values-sw600dp-land\\styles.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endLine": 6,
+                        "endColumn": 12,
+                        "endOffset": 220
+                    }
+                }
+            }
+        ]
+    }
+]
