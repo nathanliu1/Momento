@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -100,58 +101,59 @@ public class SavedListFragment extends ListFragment {
     }
 
     private class MyListAdapter extends BaseAdapter {
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations",Context.MODE_PRIVATE);
+        int savedCount = sharedPref.getInt("countSaved", 0);
 
         @Override
         public int getCount() {
-            return 1;
+            return savedCount;
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return sharedPref.getString(position+"","");
         }
 
         @Override
-        public long getItemId(int position) {
-            return 211;
-        }
+        public long getItemId(int position) {return 2;}
 
         @Override
         public View getView(int position, View convertView, ViewGroup container) {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_saved_list, container, false);
             }
-            SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations",Context.MODE_PRIVATE);
-            int savedCount = sharedPref.getInt("countSaved", 0);
-            Log.i("savedCount", savedCount+"");
-            if (savedCount > 0) {
-                for (int i = 0; i < savedCount; i++) {
-                    String columnVal = sharedPref.getString(i+"", "");
-                    Log.i("columnVal", columnVal);
-                    String[] colVals = columnVal.split("\\|\\|");
-                    ((TextView) convertView.findViewById(R.id.article_title)).setText(colVals[0]);
-                    ((TextView)convertView.findViewById(R.id.article_subtitle)).setText(colVals[1]);
-                    Log.i("columnVal", colVals[2]);
-                    final ImageView img = (ImageView) convertView.findViewById(R.id.thumbnail);
-                    try {
-                        String afterDecode = URLDecoder.decode(colVals[2], "UTF-8");
-                        Glide.with(getActivity()).load(afterDecode).asBitmap().fitCenter().into(new BitmapImageViewTarget(img) {
-                            @Override
-                            protected void setResource(Bitmap resource) {
-                                RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
-                                circularBitmapDrawable.setCircular(true);
-                                img.setImageDrawable(circularBitmapDrawable);
-                            }
-                        });
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
-
+            String columnVal = sharedPref.getString(position+"", "");
+            Log.i("columnVal", columnVal);
+            String[] colVals = columnVal.split("\\|\\|");
+            ((TextView) convertView.findViewById(R.id.article_title)).setText(colVals[0]);
+            ((TextView)convertView.findViewById(R.id.article_subtitle)).setText(colVals[1]);
+            Log.i("columnVal", colVals[2]);
+            final ImageView img = (ImageView) convertView.findViewById(R.id.thumbnail);
+            try {
+                String afterDecode = URLDecoder.decode(colVals[2], "UTF-8");
+                if (afterDecode.contains("content://")) {
+                    Uri imagePicker = Uri.parse(afterDecode);
+                    Glide.with(getActivity()).load(imagePicker).asBitmap().fitCenter().into(new BitmapImageViewTarget(img) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            img.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+                } else {
+                    Glide.with(getActivity()).load(afterDecode).asBitmap().fitCenter().into(new BitmapImageViewTarget(img) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            img.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
                 }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
-
-
             return convertView;
         }
     }

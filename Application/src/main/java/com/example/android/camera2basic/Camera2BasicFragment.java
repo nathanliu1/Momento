@@ -857,9 +857,9 @@ public class Camera2BasicFragment extends Fragment
                                                @NonNull TotalCaptureResult result) {
                     showToast("Saved: " + mFile);
                     Log.d(TAG, mFile.toString());
-                    ((CameraActivity) getActivity()).setImageData(mFile);
                     SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
+                    ((CameraActivity) getActivity()).setImageData(mFile);
                     int savedCount = sharedPref.getInt("pictureCount", 0);
                     savedCount++;
                     editor.putInt("pictureCount", savedCount);

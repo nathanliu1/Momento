@@ -214,12 +214,12 @@ public class CameraActivity extends Activity implements
             HashMap<String,String> decision = new HashMap<String,String>();
             decision = MatchingToLocation.sendForMatching(returnedWikiData,allClarifaiValuesOutput);
             Intent i = new Intent(this, DisplayActivity.class);
-            i.putExtra("title",decision.get("title").toString());
-            i.putExtra("pageid",decision.get("pageid").toString());
-            i.putExtra("extract",decision.get("extract").toString());
-            i.putExtra("lat", decision.get("lat").toString());
-            i.putExtra("long", decision.get("long").toString());
-            i.putExtra("distance",Double.parseDouble(decision.get("distance").toString()));
+            i.putExtra("title",decision.get("title"));
+            i.putExtra("pageid",decision.get("pageid"));
+            i.putExtra("extract",decision.get("extract"));
+            i.putExtra("lat", decision.get("lat"));
+            i.putExtra("long", decision.get("long"));
+            i.putExtra("distance",Double.parseDouble(decision.get("distance")));
             if (!isBitmap) {
                 i.putExtra("image", getImageData().getAbsolutePath());
             } else {

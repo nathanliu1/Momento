@@ -1,4 +1,4 @@
-#Mon Oct 31 15:05:05 EDT 2016
+#Wed Nov 16 12:59:43 EST 2016
 base.0=C\:\\Users\\jiliu\\Downloads\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8446c1b6d8b972d79c836b06dea7f7ba3495bfff
 renamed.1=classes2.dex
 renamed.0=classes.dex

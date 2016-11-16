@@ -74,6 +74,11 @@ public class PreviewFragment extends Fragment implements View.OnClickListener {
             Bitmap b = ((CameraActivity) getActivity()).getImageDataBM();
             picPreview.setBackgroundColor(Color.parseColor("#000000"));
             mImageView.setImageBitmap(b);
+        } else {
+            isBitmap = false;
+//            picPreview.setBackgroundColor(Color.parseColor("#000000"));
+//            Bitmap b = BitmapFactory.decodeFile(((CameraActivity) getActivity()).getImageData().getPath());
+//            mImageView.setImageBitmap(b);
         }
     }
 
