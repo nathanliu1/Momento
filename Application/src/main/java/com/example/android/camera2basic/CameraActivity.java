@@ -197,9 +197,9 @@ public class CameraActivity extends Activity implements
             i.putExtra("long", decision.get("long").toString());
             i.putExtra("distance",Double.parseDouble(decision.get("distance").toString()));
             if (!isBitmap) {
+                Log.i("iamgelocation",getImageData().getAbsolutePath());
                 i.putExtra("image", getImageData().getAbsolutePath());
             } else {
-                Log.i("test",getImageDataPath());
                 i.putExtra("image", getImageDataPath());
             }
             this.startActivity(i);

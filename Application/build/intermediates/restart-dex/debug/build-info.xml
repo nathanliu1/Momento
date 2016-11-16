@@ -5,39 +5,39 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.1"
-    timestamp="191889780072631"
-    token="6842760684189370817"
-    verifier="COMPATIBLE" >
+    timestamp="197330272076975"
+    token="8699696000695515970"
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="468" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="398" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="23" />
+        duration="0" />
     <task
         name="verifier"
-        duration="2" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\jiliu\Downloads\android-Camera2Basic-master\Application\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="C:\DEV\android-Camera2Basic-master\Application\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
+        type="DEX" />
 
     <build
-        timestamp="190643028932525"
+        timestamp="197243237674055"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\jiliu\Downloads\android-Camera2Basic-master\Application\build\outputs\apk\Application-debug.apk"
+            location="C:\DEV\android-Camera2Basic-master\Application\build\outputs\apk\Application-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="535040231017301"
+        timestamp="197330272076975"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="C:\Users\jiliu\Downloads\android-Camera2Basic-master\Application\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
+            location="C:\DEV\android-Camera2Basic-master\Application\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
             type="DEX" />
     </build>
 

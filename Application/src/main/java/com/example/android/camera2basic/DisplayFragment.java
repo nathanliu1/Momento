@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,9 +55,11 @@ public class DisplayFragment extends Fragment implements View.OnClickListener {
     String pathUrl;
     MapView mMapView;
     GoogleMap googleMap;
+    FloatingActionButton mFloatingAction;
     CollapsingToolbarLayout collapsingToolbar;
     Toolbar toolbar;
     String savedFavorite;
+    Boolean isSaved = false;
 
 
     public static DisplayFragment newInstance() {
@@ -108,6 +112,7 @@ public class DisplayFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
         return rootView;
     }
 
@@ -115,6 +120,7 @@ public class DisplayFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         TextView titleView = (TextView)view.findViewById(R.id.author);
         titleView.setText(title);
+        mFloatingAction = (FloatingActionButton) view.findViewById(R.id.appbarbutton);
         collapsingToolbar.setTitle(title);
         TextView extractView = (TextView)view.findViewById(R.id.quote);
         extractView.setText(extract);
@@ -127,17 +133,34 @@ public class DisplayFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.appbarbutton: {
-                SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                savedFavorite = title+"||"+extract+"||"+pathUrl+"||"+lat+"||"+longitude;
-                int savedCount = sharedPref.getInt("countSaved", 0);
-                Log.i("saved value", savedCount+"");
-                savedCount++;
-                editor.putString(""+(savedCount-1), savedFavorite);
-                editor.putInt("countSaved", savedCount);
-                editor.commit();
-                Log.i("saved value", savedFavorite);
-                break;
+                if (!isSaved) {
+                    isSaved = true;
+                    mFloatingAction.setImageResource(R.drawable.exit_drawable_icon);
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    savedFavorite = title + "||" + extract + "||" + pathUrl + "||" + lat + "||" + longitude;
+                    int savedCount = sharedPref.getInt("countSaved", 0);
+                    Log.i("saved value", savedCount + "");
+                    savedCount++;
+                    editor.putString("" + (savedCount - 1), savedFavorite);
+                    editor.putInt("countSaved", savedCount);
+                    editor.commit();
+                    Toast.makeText(getActivity(), "This location has been saved", Toast.LENGTH_SHORT).show();
+                    Log.i("saved value", savedFavorite);
+                    break;
+                } else {
+                    isSaved = false;
+                    mFloatingAction.setImageResource(R.drawable.heart_drawable_icon);
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences("savedLocations", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    int savedCount = sharedPref.getInt("countSaved", 0);
+                    savedCount--;
+                    editor.remove(savedCount+"");
+                    editor.putInt("countSaved", savedCount);
+                    editor.commit();
+                    Toast.makeText(getActivity(), "This location has been removed", Toast.LENGTH_SHORT).show();
+                    break;
+                }
             }
 
         }

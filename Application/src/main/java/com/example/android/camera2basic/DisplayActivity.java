@@ -1,5 +1,6 @@
 package com.example.android.camera2basic;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,8 +56,18 @@ public class DisplayActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
+            finish();
+            Intent intent = new Intent(this, CameraActivity.class);
+            startActivity(intent);
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 }

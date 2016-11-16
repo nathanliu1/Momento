@@ -462,6 +462,7 @@ public class Camera2BasicFragment extends Fragment
         super.onResume();
         startBackgroundThread();
 
+
         // When the screen is turned off and turned back on, the SurfaceTexture is already
         // available, and "onSurfaceTextureAvailable" will not be called. In that case, we can open
         // a camera and start preview from here (otherwise, we wait until the surface is ready in
@@ -859,12 +860,12 @@ public class Camera2BasicFragment extends Fragment
                     Log.d(TAG, mFile.toString());
                     SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    ((CameraActivity) getActivity()).setImageData(mFile);
                     int savedCount = sharedPref.getInt("pictureCount", 0);
                     savedCount++;
+                    mFile = new File(getActivity().getExternalFilesDir(null), "pic"+savedCount+".jpg");
+                    ((CameraActivity) getActivity()).setImageData(mFile);
                     editor.putInt("pictureCount", savedCount);
                     editor.commit();
-                    mFile = new File(getActivity().getExternalFilesDir(null), "pic"+savedCount+".jpg");
                     PreviewFragment previewFragment = new PreviewFragment();
                     FragmentManager transaction = getFragmentManager();
                     transaction.beginTransaction().replace(R.id.cameraPreview, previewFragment)
@@ -981,6 +982,7 @@ public class Camera2BasicFragment extends Fragment
                     CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
         }
     }
+
 
     /**
      * Saves a JPEG {@link Image} into the specified {@link File}.
